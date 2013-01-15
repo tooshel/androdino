@@ -1,12 +1,12 @@
 Using the ADK (Accessory Development Kit) and Arduino to do awesome things
 =========
 
-A (short) introduction to Arduino and Accessory Development Kit (ADK).
-
-We hook up a regular Arduino just so people don't think there is anything special about the ADK hardware itself (beside the host mode USB and, oh, how the new ADK hardware isn't Arduino at all).
+A (short) introduction to Arduino and the Accessory Development Kit (ADK) is first up. The ADK hardware is great but it's not necessary to get started in the world of microcontrollers so we'll show off the ADK hardware as well as regular Arduino hardware. Then a little about electronics. More about Arduino and "sheilds". Then a little about our project to take advantage of all this microcontroller knowlege.
 
 
 
+About Sheldon:
+===
 
 Sheldon graduated with a degree in electrical engineering but even while he was getting that degree he worked as a web developer for the engineering department. Fifteen years later and I'm just as confused about how inductors work as everyone else. 
 
