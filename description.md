@@ -1,4 +1,5 @@
-==Using the ADK (Accessory Development Kit) and Arduino to do awesome things==
+Using the ADK (Accessory Development Kit) and Arduino to do awesome things
+=========
 
 A (short) introduction to Arduino and Accessory Development Kit (ADK).
 
