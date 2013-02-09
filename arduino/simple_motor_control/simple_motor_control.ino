@@ -11,7 +11,6 @@ int brakeB = 8;
 
 int loopdelay = 100;
 
-
 Servo myservo;
 int servoPin = 5;
 int pos = 0;
