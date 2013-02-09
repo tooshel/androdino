@@ -140,6 +140,8 @@ void loop()
   digitalWrite (dirA, frBool);
   analogWrite (speedA, speedVal*speedFactor);
   
+  digitalWrite (dirB, lrBool);
+  analogWrite (speedB, dirVal*speedFactor);
   
   
   
