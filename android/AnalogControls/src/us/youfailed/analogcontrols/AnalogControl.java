@@ -24,10 +24,16 @@ public class AnalogControl extends View implements OnTouchListener{
 	//value of this control,  from 0 to 1
 	Point normal = new Point();
 	
-	
 	Paint guidePaint = new Paint();
 	Paint paint = new Paint();
+
+	private final ValueListener defaultValueListener = new ValueListener() {
+		@Override
+		public void onValueChange(AnalogControl control) {}
+		
+	};
 	
+	private ValueListener valueListener = defaultValueListener;
 	
 	boolean fingerPressed = false;
 	
@@ -75,6 +81,7 @@ public class AnalogControl extends View implements OnTouchListener{
 		normal.x = currentPoint.x / (float)getWidth(); 
 		normal.y = currentPoint.y / (float)getHeight();
 		Log.i(TAG, "" + this);
+		valueListener.onValueChange(this);
 	}
 	
 	@Override
@@ -109,4 +116,13 @@ public class AnalogControl extends View implements OnTouchListener{
     public String toString()  {
     	return String.format("AnalogControl id:%s   value%s", getId(), normal);
     }
+    
+    public void setValueListener(ValueListener listener) {
+    	if(listener == null) {
+    		valueListener = defaultValueListener;
+    	} else {
+    		valueListener = listener;
+    	}
+    }
+    
 }

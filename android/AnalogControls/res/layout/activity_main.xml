@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity" >
-
-
     
     <!-- button row -->
     <LinearLayout
@@ -15,27 +13,48 @@
         android:layout_height="wrap_content">
 			<ToggleButton
 		        android:id="@+id/toggleThumbstick1"
-		        android:layout_width="wrap_content"
+		        android:layout_width="0dp"
+		        android:layout_weight="1"
 		        android:layout_height="wrap_content"
-		        android:text="ToggleButton" />
-		        
-		    <ToggleButton
-		        android:id="@+id/toggleThumbstick2"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="ToggleButton" />
+		        android:textOn="@string/toggle_invert_stick1" 
+		        android:textOff="@string/toggle_invert_stick1" 
+		        android:textSize="10sp" 
+		        android:onClick="toggleClicked"
+		        />
 		
 		    <ToggleButton
 		        android:id="@+id/toggleButton1"
-		        android:layout_width="wrap_content"
+		        android:layout_width="0dp"
+		        android:layout_weight="1"
 		        android:layout_height="wrap_content"
-		        android:text="Lights" />
+		        android:textOn="@string/toggle_lights" 
+		        android:textOff="@string/toggle_lights" 
+		        android:textSize="10sp" 
+		        android:onClick="toggleClicked"
+		        />
 		
 		    <ToggleButton
 		        android:id="@+id/toggleButton2"
-		        android:layout_width="wrap_content"
+		        android:layout_width="0dp"
+		        android:layout_weight="1"
 		        android:layout_height="wrap_content"
-		        android:text="ToggleButton" />
+		        android:textOn="@string/toggle_misc1" 
+		        android:textOff="@string/toggle_misc1"
+		        android:textSize="10sp" 
+		        android:onClick="toggleClicked"
+		        />
+
+		    <ToggleButton
+		        android:id="@+id/toggleThumbstick2"
+		        android:layout_width="0dp"
+		        android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:textOff="@string/toggle_invert_stick2"
+		        android:textOn="@string/toggle_invert_stick2" 
+		        android:textSize="10sp" 
+		        android:onClick="toggleClicked"
+		        />
+
         </LinearLayout>
         
 	<!-- third row, thumbsticks -->
@@ -44,13 +63,14 @@
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_weight="4">
+		android:layout_weight="7">
 	    <us.youfailed.analogcontrols.AnalogControl
 	        android:id="@+id/thumbstick1"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:background="#ff332211" />
+	        android:background="#ff332211"
+	         />
 	    
 	    <us.youfailed.analogcontrols.AnalogControl
 	        android:id="@+id/thumbstick2"
@@ -64,11 +84,13 @@
     <TextView
         android:id="@+id/debug_console"
         android:layout_width="fill_parent"
-        android:minHeight="20dp"
+        android:minHeight="10dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="debug text goes here"
+        android:text="@string/debug_text"
         android:focusable="false"
+        android:textSize="20sp" 
+        
         />
 	
     

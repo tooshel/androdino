@@ -6,5 +6,12 @@
     <string name="menu_settings">Settings</string>
     <string name="left_button">Left Button</string>
     <string name="right_button">Right Button</string>
+    
+    <string name="toggle_invert_stick1">inv horiz</string>
+    <string name="toggle_invert_stick2">inv vert</string>
+    <string name="toggle_lights">lights</string>
+    <string name="toggle_misc1">misc1</string>
+    <string name="toggle_misc2">misc2</string>
+    <string name="debug_text">debug text goes here</string>
 
 </resources>
