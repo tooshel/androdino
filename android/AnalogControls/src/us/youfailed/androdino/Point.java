@@ -1,4 +1,4 @@
-package us.youfailed.analogcontrols;
+package us.youfailed.androdino;
 
 class Point{
 	float x, y;

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".RemoteControlActivity" >
     
     <!-- button row -->
     <LinearLayout
@@ -64,7 +64,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="7">
-	    <us.youfailed.analogcontrols.AnalogControl
+	    <us.youfailed.androdino.AnalogControlView
 	        android:id="@+id/thumbstick1"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
 	        android:background="#ff332211"
 	         />
 	    
-	    <us.youfailed.analogcontrols.AnalogControl
+	    <us.youfailed.androdino.AnalogControlView
 	        android:id="@+id/thumbstick2"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"

@@ -1,5 +1,6 @@
-package us.youfailed.analogcontrols;
+package us.youfailed.androdino;
 
+import us.youfailed.androdino.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,10 +9,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class MainActivity extends Activity implements ValueListener{
+public class RemoteControlActivity extends Activity implements ValueListener{
 	
-	AnalogControl speedControl;
-	AnalogControl steeringControl;
+	AnalogControlView speedControl;
+	AnalogControlView steeringControl;
 	ToggleButton invertSpeedToggle;
 	ToggleButton invertSteeringToggle;
 	ToggleButton lightsToggle;
@@ -26,10 +27,10 @@ public class MainActivity extends Activity implements ValueListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.remote_control_activity);
         
-        speedControl = (AnalogControl)findViewById(R.id.thumbstick1);
-        steeringControl = (AnalogControl)findViewById(R.id.thumbstick2);
+        speedControl = (AnalogControlView)findViewById(R.id.thumbstick1);
+        steeringControl = (AnalogControlView)findViewById(R.id.thumbstick2);
         invertSpeedToggle = (ToggleButton)findViewById(R.id.toggleThumbstick1);
         invertSteeringToggle = (ToggleButton)findViewById(R.id.toggleThumbstick2);
         lightsToggle = (ToggleButton)findViewById(R.id.toggleButton1);
@@ -109,7 +110,7 @@ public class MainActivity extends Activity implements ValueListener{
 
 
 	@Override
-	public void onValueChange(AnalogControl control) {
+	public void onValueChange(AnalogControlView control) {
 		updatePacket();
 	}
 	

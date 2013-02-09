@@ -1,5 +1,6 @@
-package us.youfailed.analogcontrols;
+package us.youfailed.androdino;
 
+import us.youfailed.androdino.R;
 import us.youfailed.util.Logf;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,7 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-public class AnalogControl extends View implements OnTouchListener{
+public class AnalogControlView extends View implements OnTouchListener{
 	
 	private static final int CENTERPOINT_RADIUS = 3;
 
@@ -29,7 +30,7 @@ public class AnalogControl extends View implements OnTouchListener{
 
 	private final ValueListener defaultValueListener = new ValueListener() {
 		@Override
-		public void onValueChange(AnalogControl control) {}
+		public void onValueChange(AnalogControlView control) {}
 		
 	};
 	
@@ -37,7 +38,7 @@ public class AnalogControl extends View implements OnTouchListener{
 	
 	boolean fingerPressed = false;
 	
-	public AnalogControl(Context context) {
+	public AnalogControlView(Context context) {
 		super(context);
 		setBackgroundColor(Color.GREEN);
 		init();
@@ -54,7 +55,7 @@ public class AnalogControl extends View implements OnTouchListener{
 		paint.setColor(getResources().getColor(R.color.touchcursor));
 	}
 
-	public AnalogControl(Context context, AttributeSet attrs) {
+	public AnalogControlView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		Log.i(TAG, String.format("contstructor  context:%s  attributes:%s ", context, attrs));
 		init();
