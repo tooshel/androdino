@@ -21,8 +21,13 @@ public class AnalogControl extends View implements OnTouchListener{
 	
 	Point currentPoint = new Point();
 	Point centerPoint = new Point();
+	//value of this control,  from 0 to 1
+	Point normal = new Point();
+	
+	
 	Paint guidePaint = new Paint();
 	Paint paint = new Paint();
+	
 	
 	boolean fingerPressed = false;
 	
@@ -58,8 +63,18 @@ public class AnalogControl extends View implements OnTouchListener{
 		} else if (MotionEvent.ACTION_UP == event.getAction() ){
 			fingerPressed = false;
 		}
+		updateValue();
 		invalidate();
 		return true;
+	}
+	
+	private void updateValue() {
+		if(!fingerPressed) {
+			currentPoint.copy(centerPoint);
+		}
+		normal.x = currentPoint.x / (float)getWidth(); 
+		normal.y = currentPoint.y / (float)getHeight();
+		Log.i(TAG, "" + this);
 	}
 	
 	@Override
@@ -70,7 +85,6 @@ public class AnalogControl extends View implements OnTouchListener{
 			canvas.drawCircle(currentPoint.x, currentPoint.y, CURSOR_RADIUS, paint);
 		}
 	}
-	
 	
 	public void reset() {
 		centerPoint.x = getWidth()/2;
@@ -87,17 +101,12 @@ public class AnalogControl extends View implements OnTouchListener{
             //viewHeight = yNew;
             reset();
     }
-	
-	private class Point{
-		float x, y;
-		@Override
-		public String toString() {
-			return String.format("(%4s, %4s)", x, y);
-		}
-		
-		public void copy(Point that) {
-			this.x = that.x;
-			this.y = that.y;
-		}
-	}
+    
+    public Point getValue() {
+    	return normal;
+    }
+    @Override
+    public String toString()  {
+    	return String.format("AnalogControl id:%s   value%s", getId(), normal);
+    }
 }
