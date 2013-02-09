@@ -14,4 +14,25 @@
     <string name="toggle_misc2">misc2</string>
     <string name="debug_text">debug text goes here</string>
 
+    <string name="title_activity_bluetooth_test">BluetoothTestActivity</string>
+    <string name="lbl_test_for_bluetooth">Test For Bluetooth</string>
+    <string name="launch_bluetooth_activity">Launch Bluetooth Activity</string>
+    <string name="pick_a_device">Pick a Device</string>
+    <string name="title_activity_device_list">DeviceListActivity</string>
+    <string name="paired_devices">Paired Devices</string>
+    <string name="discoverable_devices">Discoverable Devices</string>
+    <string name="scan_for_devices">Scan for Devices</string>
+    <string name="none_paired">None paired</string>
+    <string name="scanning">Scanning</string>
+    <string name="select_device">Select device</string>
+    <string name="none_found">None Found</string>
+    <string name="title_lights_on">Lights On</string>
+    <string name="title_lights_off">Lights Off</string>
+    <string name="not_connected">not connected</string>
+    <string name="connected">Connected!!</string>
+    <string name="title_connected_to">title_connected_to</string>
+    <string name="title_connecting">connecting</string>
+    <string name="title_not_connected">not connected</string>
+    
+    
 </resources>

@@ -27,7 +27,7 @@ public class RemoteControlActivity extends Activity implements ValueListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.remote_control_activity);
+        setContentView(R.layout.activity_remote_control);
         
         speedControl = (AnalogControlView)findViewById(R.id.thumbstick1);
         steeringControl = (AnalogControlView)findViewById(R.id.thumbstick2);
