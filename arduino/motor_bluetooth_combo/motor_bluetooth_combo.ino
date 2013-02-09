@@ -28,7 +28,7 @@ char bval;
 //Other Globals . . . love GLOBALS
 int loopDelay = 50;
 
-const int speedFactor = 28;
+const float speedFactor = 28.3;
 String CTRLStr = '\0';
 int frBool = 0;
 int speedVal = 0;
@@ -114,9 +114,9 @@ void loop()
        
       
       Serial.println(frBool);
-      Serial.println(speedVal);
+      Serial.println(speedVal*speedFactor);
       Serial.println(lrBool);
-      Serial.println(dirVal);
+      Serial.println(dirVal*speedFactor);
       Serial.println(headBool);
       Serial.println(brakeLeftBool);
       Serial.println(brakeRightBool);
