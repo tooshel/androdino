@@ -1,4 +1,3 @@
-#include <Servo.h> 
 #include <SoftwareSerial.h>
 #include <string.h>
 
