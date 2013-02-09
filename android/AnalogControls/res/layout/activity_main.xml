@@ -2,26 +2,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/left_button" />
 
-    <us.youfailed.analogcontrols.AnalogControl
-        android:id="@+id/thumbstick1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    
+    <!-- button row -->
+    <LinearLayout
+        android:id="@+id/button_row"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+			<ToggleButton
+		        android:id="@+id/toggleThumbstick1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="ToggleButton" />
+		        
+		    <ToggleButton
+		        android:id="@+id/toggleThumbstick2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="ToggleButton" />
+		
+		    <ToggleButton
+		        android:id="@+id/toggleButton1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Lights" />
+		
+		    <ToggleButton
+		        android:id="@+id/toggleButton2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="ToggleButton" />
+        </LinearLayout>
+        
+	<!-- third row, thumbsticks -->
+	<LinearLayout
+		android:id="@+id/thumbstick_row"
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="4">
+	    <us.youfailed.analogcontrols.AnalogControl
+	        android:id="@+id/thumbstick1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:background="#ff332211" />
+	    
+	    <us.youfailed.analogcontrols.AnalogControl
+	        android:id="@+id/thumbstick2"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:background="#ff112233" />
+	</LinearLayout>
+    
+    <!-- console row -->
+    <TextView
+        android:id="@+id/debug_console"
+        android:layout_width="fill_parent"
+        android:minHeight="20dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#ff000000" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/right_button" />
+        android:text="debug text goes here"
+        android:focusable="false"
+        />
+	
+    
     
 </LinearLayout>
