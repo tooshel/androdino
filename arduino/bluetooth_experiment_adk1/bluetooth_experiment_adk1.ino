@@ -4,8 +4,8 @@
 //const int rxPin = 5; // pin used to receive
 //const int txPin = 4; // pin used to send to
 
-const int rxPin = 0; // pin used to receive
-const int txPin = 1; // pin used to send to
+const int rxPin = 0; // pin used to receive, though, on the itead card, PIN 0 is TX
+const int txPin = 1; // pin used to send to, though, on the itead card, PIN 0 is RX
 SoftwareSerial bluetooth(rxPin, txPin); // new serial port on given pins
 
 int loopdelay = 100;
