@@ -45,6 +45,17 @@
 		        />
 
 		    <ToggleButton
+		        android:id="@+id/toggleButton3"
+		        android:layout_width="0dp"
+		        android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:textSize="10sp" 
+		        android:textOn="@string/toggle_misc2" 
+		        android:textOff="@string/toggle_misc2" 
+		        android:onClick="toggleClicked"
+		        />
+
+		    <ToggleButton
 		        android:id="@+id/toggleThumbstick2"
 		        android:layout_width="0dp"
 		        android:layout_weight="1"
@@ -56,7 +67,19 @@
 		        />
 
         </LinearLayout>
+    <!-- console row -->
+    <TextView
+        android:id="@+id/debug_console"
+        android:layout_width="fill_parent"
+        android:minHeight="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/debug_text"
+        android:focusable="false"
+        android:textSize="20sp" 
         
+        />
+    
 	<!-- third row, thumbsticks -->
 	<LinearLayout
 		android:id="@+id/thumbstick_row"
@@ -80,18 +103,6 @@
 	        android:background="#ff112233" />
 	</LinearLayout>
     
-    <!-- console row -->
-    <TextView
-        android:id="@+id/debug_console"
-        android:layout_width="fill_parent"
-        android:minHeight="10dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/debug_text"
-        android:focusable="false"
-        android:textSize="20sp" 
-        
-        />
 	
     
     

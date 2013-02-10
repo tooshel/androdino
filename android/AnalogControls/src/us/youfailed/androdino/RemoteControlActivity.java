@@ -1,6 +1,6 @@
 package us.youfailed.androdino;
 
-import us.youfailed.androdino.R;
+import us.youfailed.util.CommPacket;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +16,9 @@ public class RemoteControlActivity extends Activity implements ValueListener{
 	ToggleButton invertSpeedToggle;
 	ToggleButton invertSteeringToggle;
 	ToggleButton lightsToggle;
-	ToggleButton miscToggle;
+	ToggleButton miscToggle1;
+	ToggleButton miscToggle2;
+	
 	
 	TextView debugText;
 	
@@ -34,7 +36,8 @@ public class RemoteControlActivity extends Activity implements ValueListener{
         invertSpeedToggle = (ToggleButton)findViewById(R.id.toggleThumbstick1);
         invertSteeringToggle = (ToggleButton)findViewById(R.id.toggleThumbstick2);
         lightsToggle = (ToggleButton)findViewById(R.id.toggleButton1);
-        miscToggle = (ToggleButton)findViewById(R.id.toggleButton2);
+        miscToggle1 = (ToggleButton)findViewById(R.id.toggleButton2);
+        miscToggle2 = (ToggleButton)findViewById(R.id.toggleButton3);
         debugText = (TextView)findViewById(R.id.debug_console);
         
         speedControl.setValueListener(this);
@@ -45,68 +48,20 @@ public class RemoteControlActivity extends Activity implements ValueListener{
     public boolean onCreateOptionsMenu(Menu menu) {
     	super.onCreateOptionsMenu(menu);
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_main, menu);
+        getMenuInflater().inflate(R.menu.activity_remote_control, menu);
         return true;
     }
     
-//    @Override 
-//    public void onResume() {
-//    	super.onResume();
-//    }
-//    
-//    @Override
-//    public void onWindowFocusChanged(boolean hasFocus) {
-//    	if(!hasFocus) return;
-//    	AnalogControl control = (AnalogControl) findViewById(R.id.thumbstick1);
-//    	Logf.i("mainactivity", "windowFocusChanged(%s)", hasFocus);
-//    	control.reset();
-//    }
-//
-
     //for now just use same handler for all button clicks
     public void toggleClicked(View view) {
     	Log.i(TAG, "invert 1 clicked");
     	updatePacket();
+    	
+    	speedControl.setInvertY(invertSpeedToggle.isChecked());
+    	steeringControl.setInvertX(invertSteeringToggle.isChecked());
     }
         
     
-    private class CommPacket {
-    	public float speed;
-    	public float steer;
-    	public boolean lights;
-    	public boolean misc;
-    	
-    	private char[] buf = "s:1:9:1:9:1:1:1".toCharArray();
-    	private static final String sep = ":"; 
-    	
-    	private String toChar(boolean bit)  {
-    		return bit ? "1" : "0";
-    	}
-
-    	private String toChar(float normVal) {
-    		if(normVal <= 0.01f ) return "0:0";
-    		
-    		//convert normVal to -9<= x <= 9
-    		float val = ((normVal - 0.5f) * 2) * 9;
-    		int absVal = (int)Math.abs(val);
-    		String bit = toChar(val > 0);
-    		if(absVal>9)  {
-    			absVal = 9;
-    			Log.wtf(TAG, "val should be 0-9, was:" + absVal);
-    		}
-    		String chr = Integer.toString(absVal);
-    		return bit + ":" + chr;
-    	}
-    	
-    	public String packetString() {
-    		StringBuilder sb = new StringBuilder("s" + sep);
-    		sb.append(toChar(speed)).append(sep);
-    		sb.append(toChar(steer)).append(sep);
-    		sb.append(toChar(lights)).append(sep);
-    		sb.append(toChar(misc));
-    		return sb.toString();
-    	}
-    }
 
 
 	@Override
@@ -119,7 +74,8 @@ public class RemoteControlActivity extends Activity implements ValueListener{
 		packet.speed = speedControl.getValue().y;
 		packet.steer = steeringControl.getValue().x;
 		packet.lights = lightsToggle.isChecked();
-		packet.misc = miscToggle.isChecked();
+		packet.misc1 = miscToggle1.isChecked();
+		packet.misc2 = miscToggle2.isChecked();
 		
 		debugText.setText(packet.packetString());
 		

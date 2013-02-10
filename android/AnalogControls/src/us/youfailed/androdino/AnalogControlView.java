@@ -27,6 +27,9 @@ public class AnalogControlView extends View implements OnTouchListener{
 	
 	Paint guidePaint = new Paint();
 	Paint paint = new Paint();
+	
+	boolean invertX = false;
+	boolean invertY = false;
 
 	private final ValueListener defaultValueListener = new ValueListener() {
 		@Override
@@ -80,7 +83,11 @@ public class AnalogControlView extends View implements OnTouchListener{
 			currentPoint.copy(centerPoint);
 		}
 		normal.x = currentPoint.x / (float)getWidth(); 
-		normal.y = currentPoint.y / (float)getHeight();
+		//inherently invert Y since we want 0 to be bottom 
+		normal.y = 1 - (currentPoint.y / (float)getHeight());
+		if(invertX) normal.x  = 1 - normal.x;
+		if(invertY) normal.y = 1 - normal.y;
+			
 		Log.i(TAG, "" + this);
 		valueListener.onValueChange(this);
 	}
@@ -124,6 +131,25 @@ public class AnalogControlView extends View implements OnTouchListener{
     	} else {
     		valueListener = listener;
     	}
+    }
+    
+    public boolean getInvertX() {
+    	return invertX;
+    }
+    public void setInvertX(boolean inv) {
+    	this.invertX = inv;
+    }
+    
+    public boolean getInvertY() {
+    	return invertY;
+    }
+    
+    public void setInvertY(boolean inv) {
+    	this.invertY = inv;
+    }
+    
+    public void setInvert(boolean inv) {
+    	invertX = invertY = inv;
     }
     
 }
