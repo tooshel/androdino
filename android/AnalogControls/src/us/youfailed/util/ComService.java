@@ -333,6 +333,8 @@ public class ComService {
         r.write(out);
     }
     
-    
+    public boolean isConnected() {
+    	return mState == STATE_CONNECTED;
+    }
     
 }

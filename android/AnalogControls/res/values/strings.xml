@@ -18,7 +18,7 @@
     <string name="lbl_test_for_bluetooth">Test For Bluetooth</string>
     <string name="launch_bluetooth_activity">Launch Bluetooth Activity</string>
     <string name="pick_a_device">Pick a Device</string>
-    <string name="title_activity_device_list">DeviceListActivity</string>
+    <string name="title_activity_device_list">Device List</string>
     <string name="paired_devices">Paired Devices</string>
     <string name="discoverable_devices">Discoverable Devices</string>
     <string name="scan_for_devices">Scan for Devices</string>
