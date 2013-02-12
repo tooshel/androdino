@@ -222,7 +222,7 @@ public class RemoteControlActivity extends Activity implements ValueListener{
 		//fixme: this should be set earlier on, 
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         // Initialize the ComService to perform bluetooth connections
-        mComService = new ComService(this, mHandler);
+        mComService = new ComService(this, mHandler, 100L);
         // Get the device MAC address
         String address = data.getExtras()
             .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);

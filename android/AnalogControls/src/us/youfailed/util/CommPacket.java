@@ -4,9 +4,7 @@ import android.util.Log;
 
 public class CommPacket {
 		private static final String TAG = "commpacket";
-		private static final boolean DEBUG = true;
-	
-    	public float speed;
+		public float speed;
     	public float steer;
     	public boolean lights;
     	public boolean misc1;

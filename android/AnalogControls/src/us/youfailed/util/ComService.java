@@ -18,7 +18,7 @@ import android.util.Log;
 public class ComService {
 
     // Debugging
-    private static final String TAG = "BluetoothChatService";
+    private static final String TAG = "comservice";
     private static final boolean D = true;
 
 	public static final int STATE_NONE = 0;
@@ -46,10 +46,15 @@ public class ComService {
     // Key names received from the ComService Handler
     public static final String DEVICE_NAME = "device_name";
     public static final String TOAST = "toast";
-
-
     
+    private long mCooldownTime;
+
 	public ComService(Context context, Handler handler) {
+		this(context, handler, 0L);
+	}
+
+	public ComService(Context context, Handler handler, long cooldownTime) {
+		mCooldownTime = cooldownTime;
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mState = STATE_NONE;
         mHandler = handler;
@@ -94,7 +99,7 @@ public class ComService {
 
 
         // Start the thread to manage the connection and perform transmissions
-        mConnectedThread = new ConnectedThread(socket, socketType);
+        mConnectedThread = new ConnectedThread(socket, socketType, mCooldownTime);
         mConnectedThread.start();
 
         // Send the name of the connected device back to the UI Activity
@@ -217,9 +222,17 @@ public class ComService {
         private final BluetoothSocket mmSocket;
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
+        
+        //time to wait before sending a message (in millis)
+        private long mmCooldownTime;
+        //time you last wrote
+        private long mLastWriteTime = System.currentTimeMillis();
+        //next thing to write
+        private byte[] mPendingBuffer;
 
-        public ConnectedThread(BluetoothSocket socket, String socketType) {
+        public ConnectedThread(BluetoothSocket socket, String socketType, long cooldownTime) {
             Log.d(TAG, "create ConnectedThread: " + socketType);
+            mmCooldownTime = cooldownTime;
             mmSocket = socket;
             InputStream tmpIn = null;
             OutputStream tmpOut = null;
@@ -243,33 +256,45 @@ public class ComService {
 
             // Keep listening to the InputStream while connected
             while (true) {
-                try {
-                    // Read from the InputStream
-                    bytes = mmInStream.read(buffer);
-
-                    // Send the obtained bytes to the UI Activity
-                    mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)
-                            .sendToTarget();
-                } catch (IOException e) {
-                    Log.e(TAG, "disconnected", e);
-                    connectionLost();
-                    // Start the service over to restart listening mode
-                    ComService.this.start();
-                    break;
-                }
+            	//FIXME: throttling output and waiting for input need to go in separate threads,  
+            	//		  but this is safe for now because the arduino never actually sends us anything...
+            	if(readyToWrite()) {
+            		write();
+            	}
+            	
+            	
+//                try {
+//                    // Read from the InputStream
+//                    bytes = mmInStream.read(buffer);
+//
+//                    // Send the obtained bytes to the UI Activity
+//                    mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)
+//                            .sendToTarget();
+//                } catch (IOException e) {
+//                    Log.e(TAG, "disconnected", e);
+//                    connectionLost();
+//                    // Start the service over to restart listening mode
+//                    ComService.this.start();
+//                    break;
+//                }
             }
         }
 
         /**
-         * Write to the connected OutStream.
+         * Write to the connected OutStream after write cooldown
          * @param buffer  The bytes to write
          */
         public void write(byte[] buffer) {
+        	mPendingBuffer = buffer.clone();
+        }
+        
+        private void write() {
             try {
-                mmOutStream.write(buffer);
+            	Log.d(TAG, "throttled write:" + mPendingBuffer);
+                mmOutStream.write(mPendingBuffer);
 
                 // Share the sent message back to the UI Activity
-                mHandler.obtainMessage(MESSAGE_WRITE, -1, -1, buffer)
+                mHandler.obtainMessage(MESSAGE_WRITE, -1, -1, mPendingBuffer)
                         .sendToTarget();
             } catch (IOException e) {
                 Log.e(TAG, "Exception during write", e);
@@ -283,6 +308,19 @@ public class ComService {
                 Log.e(TAG, "close() of connect socket failed", e);
             }
         }
+        
+        private boolean readyToWrite() {
+        	Log.d(TAG, "readyToWrite check");
+        	if(mmCooldownTime==0) return true;
+        	long current  = System.currentTimeMillis();
+        	long elapsed = current - mLastWriteTime;
+        	boolean isReady = elapsed > mmCooldownTime;
+        	if(isReady) {
+        		mLastWriteTime = current;
+        	}
+        	return isReady;
+        }
+        
     }
     
 
