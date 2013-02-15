@@ -42,31 +42,39 @@
 				</section>
 				
 				<section id="who">
-					<h1>Who is this?</h1>
-					<h3>Cause I had to</h3>
+					<section>
+						<h1>Who is this?</h1>
+						<h3>Cause I had to</h3>
 
-					<ul>
-					<li>Web Developer since seeing Miss December 1994 
-					<li>Barely got an Electrical Engineering degree
-					<li>Google I/O is sorta my thing
-					</p>
+						<ul>
+						<li>Web Developer since Miss December 1994 
+						<li>Barely got an Electrical Engineering degree
+						<li>Google I/O is sorta my thing
+						</p>
 
-					<aside class="notes">
-						<h2>(Why'd you slang crack)</h2>
-						(hit 's' on your keyboard).
-					</aside>
+						<aside class="notes">
+							<p>Baby right down there!</p>
+						</aside>
+					</section>
+					<section>
+						<img src="images/baby.jpg">
+					</section>
+
 				</section>
 
 
 				<section id="arduino">
-					<h1>What is Arduino?</h1>
-					 
-					<blockquote cite="http://www.arduino.cc/">Arduino is an open-source electronics prototyping platform based on flexible, easy-to-use hardware and software. It's intended for artists, designers, hobbyists, and anyone interested in creating interactive objects or environments.</blockquote>
+					<section>
+						<h1>What is Arduino?</h1>
+						 
+						<blockquote cite="http://www.arduino.cc/">Arduino is an open-source electronics prototyping platform based on flexible, easy-to-use hardware and software. It's intended for artists, designers, hobbyists, and anyone interested in creating interactive objects or environments.</blockquote>
 
-					<aside class="notes">
-						<p>At least it says "platform".</p>
-						<p>Name of a company, name of the boards they make, name of the software.</p>
-					</aside>
+						<aside class="notes">
+							<p>At least it says "platform".</p>
+							<p>Name of a company, name of the boards they make, name of the software.</p>
+						</aside>
+					</section>
+
 				</section>
 
 				<section id="adk">
@@ -77,20 +85,13 @@
 
 					 
 					<aside class="notes">
-						<p></p>
-						<p>Not helpful . . . I think of it as the software that exists on Android phones so that it can communicate with hardware</p>
+						<p>DOWN for official ADK hardware and other ADK compatable hardware</p>
+						<p>I think of it as the software that exists on Android phones so that it can communicate with hardware</p>
 						<p>And, also, it's hardware and in this case, hardware that is like an Arduino Clone like so many others.</p>
 
 					</aside>
 					</section>
-					<section>
-						<h2>Official ADK's</h2>
 
-					</section>
-					<section>
-						<h2>Other ADK "ready" hardware</h2>
-						
-					</section>
 				</section>
 
 				<section id="awesome">
@@ -130,7 +131,50 @@
 
 				<section id="more-on-arduino">
 
-					<p>It's all about this one chip . . . the atmega. You can make your own Arduino with a breadboard, that chip, and some other little parts. Better yet, you can design your own board any size you want with whatever components you want built in.</p>
+					<section>
+						<h1>Official Arduino</h1>
+						<img width="350" align="left" src="images/acc/ArduinoUno_R3_Front_450px.jpg">
+						<img width="350" align="right" src="images/acc/ArduinoUno_R3_Back_450px.jpg">
+
+						<aside class="notes">
+							<p>Show and tell on this later.</p>
+							<p>It's all about this one chip . . . the atmega. You can make your own Arduino with a breadboard, that chip, and some other little parts. Better yet, you can design your own board any size you want with whatever components you want built in.</p>
+						</aside>
+
+					</section>
+
+					<section>
+						<h3>Arduino MEGA</h3>
+						<img width="350" align="left" src="images/acc/ArduinoMega2560_R3_Front_450px.jpg">
+						<img width="350" align="right" src="images/acc/ArduinoMega2560_R3_Back_450px.jpg">
+						<br style="clear: both;" >
+						<h3>Arduino MEGA ADK</h3>
+						<img width="350" align="left" src="images/acc/ArduinoADK_R3_Front_450px.jpg">
+						<img width="350" align="right" src="images/acc/ArduinoADK_R3_Back_450px.jpg">
+					</section>
+
+					<section>
+						<h1>The Clones</h1>
+
+						<p>Plus dozens of others!</p>
+					</section>
+
+					<section>
+						<h2>Official ADK's</h2>
+
+					</section>
+
+					<section>
+						<h2>Other ADK "ready" hardware</h2>
+						
+					</section>
+					<section>
+						<h1>Shields!</h1>
+
+					</section>
+
+
+
 
 				</section>
 
@@ -147,23 +191,6 @@
 				<section id="details-software-android">
 
 
-				</section>
-
-
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
 				</section>
 
 				<section id="psy">
@@ -209,27 +236,6 @@
 				</section>
 
 		
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) ) {
-        node.className += ' roll';
-      }
-    };
-  }
-}
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
 
 				<section id="why-didnt-you-use">
 					<h1>Other options?</h1>
