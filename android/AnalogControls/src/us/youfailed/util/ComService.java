@@ -213,6 +213,21 @@ public class ComService {
             }
         }
     }
+    
+    private class ThrottleThread extends Thread {
+    	private final ConnectedThread  mct;
+    	public ThrottleThread(ConnectedThread ct) {
+    		mct = ct;
+    	}
+    	
+    	public void run() {
+    		while(true) {
+    			if(mct.readyToWrite()) {
+    				mct.write();
+    			}
+    		}
+    	}
+    }
 
     /**
      * This thread runs during a connection with a remote device.
@@ -255,28 +270,23 @@ public class ComService {
             int bytes;
 
             // Keep listening to the InputStream while connected
+            ThrottleThread tt = new ThrottleThread(this);
+            tt.start();
             while (true) {
-            	//FIXME: throttling output and waiting for input need to go in separate threads,  
-            	//		  but this is safe for now because the arduino never actually sends us anything...
-            	if(readyToWrite()) {
-            		write();
-            	}
-            	
-            	
-//                try {
-//                    // Read from the InputStream
-//                    bytes = mmInStream.read(buffer);
-//
-//                    // Send the obtained bytes to the UI Activity
-//                    mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)
-//                            .sendToTarget();
-//                } catch (IOException e) {
-//                    Log.e(TAG, "disconnected", e);
-//                    connectionLost();
-//                    // Start the service over to restart listening mode
-//                    ComService.this.start();
-//                    break;
-//                }
+                try {
+                    // Read from the InputStream
+                    bytes = mmInStream.read(buffer);
+
+                    // Send the obtained bytes to the UI Activity
+                    mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)
+                            .sendToTarget();
+                } catch (IOException e) {
+                    Log.e(TAG, "disconnected", e);
+                    connectionLost();
+                    // Start the service over to restart listening mode
+                    ComService.this.start();
+                    break;
+                }
             }
         }
 
@@ -291,7 +301,9 @@ public class ComService {
         private void write() {
             try {
             	Log.d(TAG, "throttled write:" + mPendingBuffer);
-                mmOutStream.write(mPendingBuffer);
+            	if(mPendingBuffer!= null && mmOutStream != null) {
+            		mmOutStream.write(mPendingBuffer);
+            	}
 
                 // Share the sent message back to the UI Activity
                 mHandler.obtainMessage(MESSAGE_WRITE, -1, -1, mPendingBuffer)
@@ -310,12 +322,12 @@ public class ComService {
         }
         
         private boolean readyToWrite() {
-        	Log.d(TAG, "readyToWrite check");
         	if(mmCooldownTime==0) return true;
         	long current  = System.currentTimeMillis();
         	long elapsed = current - mLastWriteTime;
         	boolean isReady = elapsed > mmCooldownTime;
         	if(isReady) {
+        		Log.d(TAG, "readyToWrite check");
         		mLastWriteTime = current;
         	}
         	return isReady;
