@@ -76,8 +76,10 @@
 						<blockquote cite="http://www.arduino.cc/">Arduino is an open-source electronics prototyping platform based on flexible, easy-to-use hardware and software. It's intended for artists, designers, hobbyists, and anyone interested in creating interactive objects or environments.</blockquote>
 
 						<aside class="notes">
-							<p>At least it says "platform".</p>
+							<p>I figured you read that!</p>
+							<p>It's more complicated of course but at least it says "platform".</p>
 							<p>Name of a company, name of the boards they make, name of the software.</p>
+							<p>shield can be put into USB Host mode></p>
 						</aside>
 					</section>
 
@@ -91,10 +93,8 @@
 
 					 
 					<aside class="notes">
-						<p>DOWN for official ADK hardware and other ADK compatable hardware</p>
+						<p>Official ADK hardware and other ADK compatable hardware examples later on</p>
 						<p>I think of it as the software that exists on Android phones so that it can communicate with hardware</p>
-						<p>And, also, it's hardware and in this case, hardware that is like an Arduino Clone like so many others.</p>
-
 					</aside>
 					</section>
 
@@ -107,7 +107,6 @@
 						 <img class="fragment" src="images/volocopter-multi-blade-chopper_1.jpg" />
 
 						<aside class="notes">
-							<p></p>
 							<p>For some it's gotta be something with propellers</p>
 						</aside>
 
@@ -142,6 +141,7 @@
 					<section>
 						<h1>More on Arduino</h1>
 						<h2>Official Arduino</h2>
+						<p>ATmega328, 16Mhz</p>
 						<img width="350" align="left" src="images/acc/ArduinoUno_R3_Front_450px.jpg">
 						<img width="350" align="right" src="images/acc/ArduinoUno_R3_Back_450px.jpg">
 
@@ -154,6 +154,7 @@
 
 					<section>
 						<h3>Arduino MEGA</h3>
+						<p>ATmega2560, 16Mhz (more pins, basically)</p>
 						<img width="350" align="left" src="images/acc/ArduinoMega2560_R3_Front_450px.jpg">
 						<img width="350" align="right" src="images/acc/ArduinoMega2560_R3_Back_450px.jpg">
 						<br style="clear: both;" >
@@ -163,23 +164,47 @@
 					</section>
 
 					<section>
-						<h1>The Clones</h1>
+						<h1>Arduino Due</h1>
+						<p>ARM Cortex M3, 32-bit</p>
+						<img width="350" align="left" src="images/acc/ArduinoDue_Front_450px.jpg">
+						<img width="350" align="right" src="images/acc/ArduinoDue_Back_450px.jpg">
+						<br style="clear: both;" >
+					</section>
 
+					<section>
+						<h1>ADK 2011</h1>
+						<p>Basically, it's an Arduino MEGA ADK (ATmega2560, 16Mhz)</p>
+						<img height="250" align="left" src="images/adk2011.jpg">
+						<img height="250" align="right" src="images/adk2011_w.jpg">
+						<br style="clear: both;" >
+
+					</section>
+
+					<section>
+						<h1>ADK 2012</h1>
+						<p>Basically, it's an Arduino Due (ARM Cortex M3, 32-bit)</p>
+						<p>With a TON of sensors and LEDs</p>
+						<img height="250" align="left" src="images/adk2012-board.jpg">
+						<img height="250" align="right" src="images/adk2012_blue.png">
+
+					</section>
+
+					<section>
+						<h1>The Clones!</h1>
 						<p>Plus dozens of others!</p>
+						<img height="250" align="left" src="images/ruggeduino_AM010_01.gif">
+						<img height="250" align="right" src="images/iteaduino.jpg">
 					</section>
 
 					<section>
-						<h2>Official ADK's</h2>
-
-					</section>
-
-					<section>
-						<h2>Other ADK "ready" hardware</h2>
-						
-					</section>
-					<section>
-						<h1>Shields! Activate!</h1>
-
+						<h2>Shields n' Stuff!</h2>
+						<p>Here are a few I have here</p>
+						<img height="200" align="left" src="images/iteadbt.jpg">
+						<img height="200" align="left" src="images/iteadmotomama.jpg">
+						<img height="200" align="left" src="images/iteadbtbee.jpg">
+						<br style="clear: both;" >
+						<img height="250" align="left" src="images/bricktronics.jpg">
+						<img height="250" align="left" src="images/acc/motorshield.jpg">
 					</section>
 
 
@@ -190,17 +215,21 @@
 				<section id="details-hardware">
 					<h1>Hardware details</h1>
 					<ul>
-						<li>Arduino</li>
+						<li>Arduino Uno or ADK 2011 or ADK 2012</li>
 						<li>Motor Shield</li>
 						<li>Bluetooth Shield</li>
 					</ul>
+					<br>
+					<br>
+
+					<p>Notice my custom Lego PF to Arduino wires!<p>
 
 				</section>
 
 				<section id="details-software-arduino">
 					<section>
 						<h2 class="upper">Hardware Software Details</h2>
-						<img src="images/arduino-ide.png">
+						<img height="600" src="images/arduino-ide.png">
 					</section>
 
 					<section id="details-software-arduino">
@@ -265,23 +294,36 @@
 						<li><a href="http://www.raspberrypi.org/">Raspberry Pi</a></li>
 					</ul>
 
+					<aside class="notes">
+						<p>I have them . . . would have tried but this presentation took too long.</p>
+					</aside>
 
 				</section>
 
 				<section id="where-is-js">
-					<h1>Javascript?</h1>
+					<h1>Where the &lt;BLEEP&gt; is the Javascript?</h1>
 					<h2>i.e. Why didn't you use?</h2>
+
+					<aside class="notes">
+						<p>I didn't want a computer between the phone and arduino</p>
+						<p>ADK 2102 and Due are powerful enough to use for something other than serial controlers</p>						
+					</aside>
 
 				</section>
 
 				<section id="resources">
 					<section>
 					<h1>Resources</h1>
-
-					<ul>
-						<li>Arduino Books</li>
-						<li>Sariel's book</li>
+					<p>Books!!</p>
+					<p>Honorable mention to <a href="http://electronics.stackexchange.com/">electronics</a> and <a href="http://bricks.stackexchange.com/">lego</a> stackexchanges</li>
 					</ul>
+					<br style="clear: both;" >
+					<img height="200" src="images/books/arduino-in-action.jpg">
+					<img height="200" src="images/books/unofficial_lego_builders_guide.png">
+					<img height="200" src="images/books/lego_book_cover_300w.jpg">
+					<img height="200" src="images/books/getting-started.jpg">
+					<img height="200" src="images/books/arduino-cookbook.jpg">
+
 					</section>
 					<section>
 						<h1>Where did you get all that stuff?</h1>
@@ -293,7 +335,6 @@
 						itead<br>
 						Lego<br>
 						<h2>Questions</h2>
-						electronics stackexchange<br>
 						bricks stackexchange<br>
 
 					</section>
