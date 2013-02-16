@@ -173,3 +173,79 @@ body {
   font-family: "Yanone Kaffeesatz";
   font-weight: bold;
 }
+
+.android .reveal .state-background {
+  background: rgba(200, 50, 30, 0.6);
+}
+
+.arduino .reveal .state-background {
+  background: rgba(50, 200, 90, 0.4);
+}
+
+.lego .reveal .state-background {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.footer_logo {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: #4da42e;
+}
+
+.footer_logo img {
+  margin-bottom: -5px;
+  cursor: pointer;
+  height: 18px;
+}
+
+.reveal a:not(.image) {
+  color: #4da42e;
+}
+
+.reveal .roll span:after {
+  color: #4da42e;
+  background: #eee7cb;
+}
+
+.reveal .controls div.enabled {
+  opacity: .8;
+}
+
+.reveal .controls div.navigate-right, .reveal .controls div.navigate-right.enabled {
+  border-left-color: #4da42e;
+}
+
+.reveal .controls div.navigate-right.enabled:hover {
+  border-left-color: #4da42e;
+  opacity: .4;
+}
+
+.reveal .controls div.navigate-down, .reveal .controls div.navigate-down.enabled {
+  border-top-color: #4da42e;
+}
+
+.reveal .controls div.navigate-down.enabled:hover {
+  border-top-color: #4da42e;
+  opacity: .4;
+}
+
+.reveal .controls div.navigate-left, .reveal .controls div.navigate-left.enabled {
+  border-right-color: #4da42e;
+}
+
+.reveal .controls div.navigate-left.enabled:hover {
+  border-right-color: #4da42e;
+  opacity: .4;
+}
+
+.reveal .controls div.navigate-up, .reveal .controls div.navigate-up.enabled {
+  border-bottom-color: #4da42e;
+}
+
+.reveal .controls div.navigate-up.enabled:hover {
+  border-bottom-color: #4da42e;
+  opacity: .4;
+}
