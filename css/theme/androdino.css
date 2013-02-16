@@ -192,21 +192,21 @@ body {
   width: 100%;
   text-align: center;
   font-size: 18px;
-  color: #4da42e;
+  color: #A4C639;
 }
 
 .footer_logo img {
   margin-bottom: -5px;
   cursor: pointer;
-  height: 18px;
+  height: 20px;
 }
 
 .reveal a:not(.image) {
-  color: #4da42e;
+  color: #A4C639;
 }
 
 .reveal .roll span:after {
-  color: #4da42e;
+  color: #A4C639;
   background: #eee7cb;
 }
 
@@ -215,37 +215,37 @@ body {
 }
 
 .reveal .controls div.navigate-right, .reveal .controls div.navigate-right.enabled {
-  border-left-color: #4da42e;
+  border-left-color: #A4C639;
 }
 
 .reveal .controls div.navigate-right.enabled:hover {
-  border-left-color: #4da42e;
+  border-left-color: #A4C639;
   opacity: .4;
 }
 
 .reveal .controls div.navigate-down, .reveal .controls div.navigate-down.enabled {
-  border-top-color: #4da42e;
+  border-top-color: #A4C639;
 }
 
 .reveal .controls div.navigate-down.enabled:hover {
-  border-top-color: #4da42e;
+  border-top-color: #A4C639;
   opacity: .4;
 }
 
 .reveal .controls div.navigate-left, .reveal .controls div.navigate-left.enabled {
-  border-right-color: #4da42e;
+  border-right-color: #A4C639;
 }
 
 .reveal .controls div.navigate-left.enabled:hover {
-  border-right-color: #4da42e;
+  border-right-color: #A4C639;
   opacity: .4;
 }
 
 .reveal .controls div.navigate-up, .reveal .controls div.navigate-up.enabled {
-  border-bottom-color: #4da42e;
+  border-bottom-color: #A4C639;
 }
 
 .reveal .controls div.navigate-up.enabled:hover {
-  border-bottom-color: #4da42e;
+  border-bottom-color: #A4C639;
   opacity: .4;
 }
