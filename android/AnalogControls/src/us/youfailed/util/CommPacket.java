@@ -17,17 +17,18 @@ public class CommPacket {
     	}
 
     	private String toChar(float normVal) {
-    		if(normVal <= 0.01f ) return "0:0";
+    		//if(normVal <= 0.01f ) return "0:0";
     		
     		//convert normVal to -9<= x <= 9
-    		float val = ((normVal - 0.5f) * 2) * 9;
-    		int absVal = (int)Math.abs(val);
-    		String bit = toChar(val > 0);
-    		if(absVal>9)  {
-    			absVal = 9;
+    		float val = ((normVal - 0.5f) * 2f) * 9f;
+    		float absVal = Math.abs(val);
+    		absVal = Math.round(absVal);
+    		String bit = toChar(val > 0f);
+    		if(absVal>9f)  {
+    			absVal = 9f;
     			Log.wtf(TAG, "val should be 0-9, was:" + absVal);
     		}
-    		String chr = Integer.toString(absVal);
+    		String chr = Integer.toString((int)absVal);
     		return bit + ":" + chr;
     	}
     	

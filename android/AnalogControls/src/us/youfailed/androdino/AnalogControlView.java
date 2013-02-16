@@ -94,10 +94,10 @@ public class AnalogControlView extends View implements OnTouchListener{
 
 		normal.x = currentPoint.x / (float)getWidth(); 
 		//inherently invert Y since we want 0 to be bottom 
-		normal.y = 1 - (currentPoint.y / (float)getHeight());
+		normal.y = 1f - (currentPoint.y / (float)getHeight());
 		
-		if(invertX) normal.x  = 1 - normal.x;
-		if(invertY) normal.y = 1 - normal.y;
+		if(invertX) normal.x  = 1f - normal.x;
+		if(invertY) normal.y = 1f - normal.y;
 			
 		Log.i(TAG, "" + this);
 		valueListener.onValueChange(this);
@@ -113,8 +113,8 @@ public class AnalogControlView extends View implements OnTouchListener{
 	}
 	
 	public void reset() {
-		centerPoint.x = getWidth()/2;
-		centerPoint.y = getHeight()/2;
+		centerPoint.x = (float)getWidth()/2f;
+		centerPoint.y = (float)getHeight()/2f;
 		currentPoint.copy(centerPoint);
 		invalidate();
 		Logf.i(TAG, "reset(): center is %s", centerPoint);
