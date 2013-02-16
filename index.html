@@ -39,6 +39,12 @@
 					<h1>ADK and Arduino</h1>
 					<h3>Using the ADK (Accessory Development Kit) and Arduino to do awesome things</h3>
 					<p>aka: <a href="https://github.com/tooshel/androdino">androdino</a></p>
+
+
+					<aside class="notes">
+						<p>Hello? Did everyone get a beer?</p>
+						<p></p>
+					</aside>
 				</section>
 				
 				<section id="who">
@@ -123,8 +129,10 @@
 					<section>
 						<h1>What is awesome?</h1>
 
-						 <img src="images/9398-1-add-android.jpg" />
-
+						<img src="images/9398-1-add-android.jpg" />
+						<aside class="notes">
+							<p>This is lego's solution to control (show the remotes)</p>
+						</aside>
 					</section>
 
 				</section>
@@ -243,7 +251,27 @@
 					</section>
 				</section>
 
-		
+
+				<section id="challenges">
+					<h1>Challenges</h1>
+
+					<ul>
+						<li>RX to TX and TX to RX??</li>
+						<li>Software Serial on Mega/ADK</li>
+						<li>SoftwareSerial library (or any other normal library) not in ADK 2012 custom IDE</li>
+						<li>Lego batter pack is 9V. L298d chip on motor shield is inefficient</li>
+
+					</ul>
+
+					<aside class="notes">
+						<p>For ADK 1, since it's basically a <a href="http://arduino.cc/en/Reference/SoftwareSerial">Mega</a>, you can't software serial on the usual pins. </p>
+						<p>Since I'm using the UART pins 0 and 1 for bluetooth, I have to disconnect the bluetooth whenever I want to program the arduino</p>
+						<p> (might be able to get it from the other Cortex M3 Arduino Clones)</p>
+						<p>The battery from Lego is 9V but because of the L298 there is a 3V drop by the time it gets to the motors. So I had to invent a solution.</p>
+					</aside>
+
+				</section>
+
 
 				<section id="why-didnt-you-use">
 					<h1>Other options?</h1>
@@ -281,6 +309,10 @@
 						Adafruit<br>
 						itead<br>
 						Lego<br>
+						<h2>Questions</h2>
+						electronics stackexchange<br>
+						bricks stackexchange<br>
+
 					</section>
 				</section>
 
