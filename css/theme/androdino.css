@@ -250,6 +250,10 @@ body {
   opacity: .4;
 }
 
+.book {
+  height: 200px;
+}
+
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .reveal h1 {
@@ -274,6 +278,14 @@ body {
 
   .nav_hint {
     display: none;
+  }
+
+  .big {
+    height: 500px;
+  }
+
+  .book {
+    height: 150px;
   }
 }
 /* iPads (landscape) ----------- */
