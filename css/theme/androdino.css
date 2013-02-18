@@ -250,26 +250,8 @@ body {
   opacity: .4;
 }
 
-/* iPad Landscape */
+/* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  .reveal h1 {
-    font-size: 2.5em;
-  }
-
-  .reveal h2 {
-    font-size: 1.5em;
-  }
-
-  .reveal h3 {
-    font-size: 1.1em;
-  }
-
-  .reveal h4 {
-    font-size: 1em;
-  }
-}
-/* iPad Portrait */
-@media screen and (max-width: 768px) {
   .reveal h1 {
     font-size: 2.5em;
   }
@@ -294,8 +276,5 @@ body {
     display: none;
   }
 }
-@media screen and (max-width: 480px) {
-  .controls, .circle_nav {
-    display: none !important;
-  }
-}
+/* iPads (landscape) ----------- */
+/* iPads (portrait) ----------- */
