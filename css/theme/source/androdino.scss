@@ -127,3 +127,31 @@ $headingTextTransform: none;
 	border-bottom-color: #A4C639;
 	opacity: .4;
 }
+
+
+@media screen and (max-width: 768px) {
+
+.reveal h1 { font-size: 2.5em; }
+.reveal h2 { font-size: 1.5em;	}
+.reveal h3 { font-size: 1.1em;	}
+.reveal h4 { font-size: 1em;	}
+
+.footer_logo img, .footer_logo div{
+	display: none;
+}
+.project_thumb{
+	height: 70px;
+}
+.nav_hint{
+	display: none;
+}
+
+}
+
+@media screen and (max-width: 480px) {
+
+.controls, .circle_nav{
+	display: none !important;
+}
+
+}
