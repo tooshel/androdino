@@ -162,6 +162,7 @@ public class RemoteControlActivity extends Activity implements ValueListener{
     	
     	speedControl.setInvertY(invertSpeedToggle.isChecked());
     	steeringControl.setInvertX(invertSteeringToggle.isChecked());
+    	steeringControl.setDigital(miscToggle2.isChecked());
     }
         
 

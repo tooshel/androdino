@@ -30,6 +30,9 @@ public class AnalogControlView extends View implements OnTouchListener{
 	
 	boolean invertX = false;
 	boolean invertY = false;
+	
+	//sheldon's "punch it" button. round to either minvalue, 0, or maxvalue.
+	private boolean isDigital = false;
 
 	private final ValueListener defaultValueListener = new ValueListener() {
 		@Override
@@ -69,6 +72,12 @@ public class AnalogControlView extends View implements OnTouchListener{
 		if(MotionEvent.ACTION_MOVE == event.getAction()) {
 			currentPoint.x = event.getX();
 			currentPoint.y = event.getY();
+			
+			if(isDigital) {
+				currentPoint.x = currentPoint.x > centerPoint.x ? (float)getWidth() : 0f;
+				currentPoint.y = currentPoint.y > centerPoint.y ? (float)getHeight() : 0f;
+			}
+			
 			fingerPressed = true;
 		} else if (MotionEvent.ACTION_UP == event.getAction() ){
 			fingerPressed = false;
@@ -82,11 +91,13 @@ public class AnalogControlView extends View implements OnTouchListener{
 		if(!fingerPressed) {
 			currentPoint.copy(centerPoint);
 		}
+
 		normal.x = currentPoint.x / (float)getWidth(); 
 		//inherently invert Y since we want 0 to be bottom 
-		normal.y = 1 - (currentPoint.y / (float)getHeight());
-		if(invertX) normal.x  = 1 - normal.x;
-		if(invertY) normal.y = 1 - normal.y;
+		normal.y = 1f - (currentPoint.y / (float)getHeight());
+		
+		if(invertX) normal.x  = 1f - normal.x;
+		if(invertY) normal.y = 1f - normal.y;
 			
 		Log.i(TAG, "" + this);
 		valueListener.onValueChange(this);
@@ -102,8 +113,8 @@ public class AnalogControlView extends View implements OnTouchListener{
 	}
 	
 	public void reset() {
-		centerPoint.x = getWidth()/2;
-		centerPoint.y = getHeight()/2;
+		centerPoint.x = (float)getWidth()/2f;
+		centerPoint.y = (float)getHeight()/2f;
 		currentPoint.copy(centerPoint);
 		invalidate();
 		Logf.i(TAG, "reset(): center is %s", centerPoint);
@@ -151,5 +162,13 @@ public class AnalogControlView extends View implements OnTouchListener{
     public void setInvert(boolean inv) {
     	invertX = invertY = inv;
     }
+
+	public boolean isDigital() {
+		return isDigital;
+	}
+
+	public void setDigital(boolean isDigital) {
+		this.isDigital = isDigital;
+	}
     
 }
