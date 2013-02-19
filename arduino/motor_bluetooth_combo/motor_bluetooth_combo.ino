@@ -20,12 +20,12 @@ const int stringSize = 64;
 char stringarr[stringSize];
 
 //Used for the ledPin test
-const int ledPin = 12;
+const int ledPin = 2;
 char sval; 
 char bval;
 
 //Other Globals . . . love GLOBALS
-int loopDelay = 50;
+int loopDelay = 0;
 
 const float speedFactor = 28.3;
 String CTRLStr = '\0';
