@@ -75,7 +75,7 @@ public class ComService {
 
         // Cancel any thread currently running a connection
         if (mConnectedThread != null) {mConnectedThread.cancel(); mConnectedThread = null;}
-
+        
         // Start the thread to connect with the given device
         mConnectThread = new ConnectThread(device);
         mConnectThread.start();
@@ -101,7 +101,7 @@ public class ComService {
         // Start the thread to manage the connection and perform transmissions
         mConnectedThread = new ConnectedThread(socket, socketType, mCooldownTime);
         mConnectedThread.start();
-
+        
         // Send the name of the connected device back to the UI Activity
         Message msg = mHandler.obtainMessage(MESSAGE_DEVICE_NAME);
         Bundle bundle = new Bundle();
@@ -123,6 +123,10 @@ public class ComService {
 
         // Give the new state to the Handler so the UI Activity can update
         mHandler.obtainMessage(MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
+        
+        if(state == STATE_CONNECTED) {
+        }
+        
     }
 
     /**
@@ -216,16 +220,30 @@ public class ComService {
     
     private class ThrottleThread extends Thread {
     	private final ConnectedThread  mct;
+    	private volatile boolean done = false;
+    	private long cooldown;
+    	
     	public ThrottleThread(ConnectedThread ct) {
     		mct = ct;
+    		cooldown = mct.mmCooldownTime;
     	}
     	
     	public void run() {
-    		while(true) {
+    		done = false;
+    		while(!done) {
     			if(mct.readyToWrite()) {
     				mct.write();
     			}
+    			try {
+					Thread.sleep(cooldown);
+				} catch (InterruptedException e) {
+					Log.i(TAG, "message throttler woken from sleep: " + e);
+				}
     		}
+    	}
+    	
+    	public void cancel() {
+    		done = true;
     	}
     }
 
@@ -244,6 +262,8 @@ public class ComService {
         private long mLastWriteTime = System.currentTimeMillis();
         //next thing to write
         private byte[] mPendingBuffer;
+        
+        ThrottleThread mThrottleThread;
 
         public ConnectedThread(BluetoothSocket socket, String socketType, long cooldownTime) {
             Log.d(TAG, "create ConnectedThread: " + socketType);
@@ -268,10 +288,10 @@ public class ComService {
             Log.i(TAG, "BEGIN mConnectedThread");
             byte[] buffer = new byte[1024];
             int bytes;
+            mThrottleThread = new ThrottleThread(this);
+            mThrottleThread.start();
+            
 
-            // Keep listening to the InputStream while connected
-            ThrottleThread tt = new ThrottleThread(this);
-            tt.start();
             while (true) {
                 try {
                     // Read from the InputStream
@@ -282,6 +302,8 @@ public class ComService {
                             .sendToTarget();
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
+                    mThrottleThread.cancel();
+                    mThrottleThread = null;
                     connectionLost();
                     // Start the service over to restart listening mode
                     ComService.this.start();
@@ -315,6 +337,8 @@ public class ComService {
 
         public void cancel() {
             try {
+            	mThrottleThread.cancel();
+            	mThrottleThread = null;
                 mmSocket.close();
             } catch (IOException e) {
                 Log.e(TAG, "close() of connect socket failed", e);

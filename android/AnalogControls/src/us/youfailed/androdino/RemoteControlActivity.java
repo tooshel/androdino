@@ -188,7 +188,7 @@ public class RemoteControlActivity extends Activity implements ValueListener{
 		packet.misc2 = miscToggle2.isChecked();
 		
 		String str = packet.packetString();
-		debugText.setText(str + " " + speedControl);
+		debugText.setText(str);
 		
 		//TODO: consider putting this elsewhere
 		if(isConnected()) {
