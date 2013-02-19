@@ -143,6 +143,7 @@ void loop()
   analogWrite (speedB, dirVal*speedFactor);
   
   
+  digitalWrite(ledPin, headBool); 
   
   //This was used to turn on an LED via bluetooth and I like it here!
   bval = stringarr[availBytes -1];
