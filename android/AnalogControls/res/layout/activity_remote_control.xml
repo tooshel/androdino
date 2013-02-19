@@ -93,6 +93,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
 	        android:background="#ff332211"
+	        android:layout_margin="30dp"
 	         />
 	    
 	    <us.youfailed.androdino.AnalogControlView
@@ -100,7 +101,10 @@
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:background="#ff112233" />
+	        android:background="#ff112233" 
+	        android:layout_margin="30dp"
+	        
+	        />
 	</LinearLayout>
     
 	

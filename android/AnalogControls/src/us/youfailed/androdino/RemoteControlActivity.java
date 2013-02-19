@@ -99,6 +99,7 @@ public class RemoteControlActivity extends Activity implements ValueListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate:" + savedInstanceState);
         setContentView(R.layout.activity_remote_control);
         
         speedControl = (AnalogControlView)findViewById(R.id.thumbstick1);
@@ -117,7 +118,14 @@ public class RemoteControlActivity extends Activity implements ValueListener{
     @Override
     protected void onResume() {
     	super.onResume();
+        Log.d(TAG, "onResume");
     	testBluetoothAvailability();
+    	
+    	//on resume, set controls to correct state
+    	//FIXME: i think this should be done in the view (e.g. somehow toggle buttons retain 'checked' value)
+    	toggleClicked(null);
+    	updatePacket();
+    	
     }
 
     @Override
@@ -180,7 +188,7 @@ public class RemoteControlActivity extends Activity implements ValueListener{
 		packet.misc2 = miscToggle2.isChecked();
 		
 		String str = packet.packetString();
-		debugText.setText(str);
+		debugText.setText(str + " " + speedControl);
 		
 		//TODO: consider putting this elsewhere
 		if(isConnected()) {

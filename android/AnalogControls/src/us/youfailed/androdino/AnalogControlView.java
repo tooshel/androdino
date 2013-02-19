@@ -99,8 +99,17 @@ public class AnalogControlView extends View implements OnTouchListener{
 		if(invertX) normal.x  = 1f - normal.x;
 		if(invertY) normal.y = 1f - normal.y;
 			
+		normal.x = clamp(normal.x);
+		normal.y = clamp(normal.y);
+		
 		Log.i(TAG, "" + this);
 		valueListener.onValueChange(this);
+	}
+	
+	private float clamp(float val) {
+		if(val < 0f) return 0f;
+		if(val > 1f) return 1f;
+		return val;
 	}
 	
 	@Override
@@ -127,10 +136,11 @@ public class AnalogControlView extends View implements OnTouchListener{
             //viewHeight = yNew;
             reset();
     }
-    
+        
     public Point getValue() {
     	return normal;
     }
+    
     @Override
     public String toString()  {
     	return String.format("AnalogControl id:%s   value%s", getId(), normal);
@@ -170,5 +180,5 @@ public class AnalogControlView extends View implements OnTouchListener{
 	public void setDigital(boolean isDigital) {
 		this.isDigital = isDigital;
 	}
-    
+	
 }

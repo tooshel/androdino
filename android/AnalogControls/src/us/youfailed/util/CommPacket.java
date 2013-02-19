@@ -25,8 +25,8 @@ public class CommPacket {
     		absVal = Math.round(absVal);
     		String bit = toChar(val > 0f);
     		if(absVal>9f)  {
+    			Log.wtf(TAG, "absval should be 0-9, was:" + absVal);
     			absVal = 9f;
-    			Log.wtf(TAG, "val should be 0-9, was:" + absVal);
     		}
     		String chr = Integer.toString((int)absVal);
     		return bit + ":" + chr;
