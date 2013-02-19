@@ -1,5 +1,3 @@
-#include <Servo.h> 
-#include <SoftwareSerial.h>
 
 int dirA = 12;
 int dirB = 13;  // not used in this example
@@ -11,7 +9,6 @@ int brakeB = 8;
 
 int loopdelay = 100;
 
-Servo myservo;
 int servoPin = 5;
 int pos = 0;
 
@@ -36,7 +33,6 @@ void setup()
   pinMode (speedB, OUTPUT);
   
   
-  myservo.attach(servoPin);
 }
 
 void loop()
