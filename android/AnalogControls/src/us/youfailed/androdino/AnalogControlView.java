@@ -125,6 +125,7 @@ public class AnalogControlView extends View implements OnTouchListener{
 		centerPoint.x = (float)getWidth()/2f;
 		centerPoint.y = (float)getHeight()/2f;
 		currentPoint.copy(centerPoint);
+		updateValue();
 		invalidate();
 		Logf.i(TAG, "reset(): center is %s", centerPoint);
 	}
