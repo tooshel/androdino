@@ -69,7 +69,7 @@ public class AnalogControlView extends View implements OnTouchListener{
 	
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		if(MotionEvent.ACTION_MOVE == event.getAction()) {
+		if(MotionEvent.ACTION_MOVE == event.getAction() || MotionEvent.ACTION_DOWN == event.getAction()) {
 			currentPoint.x = event.getX();
 			currentPoint.y = event.getY();
 			
