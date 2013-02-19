@@ -1,4 +1,3 @@
-#include <SoftwareSerial.h>
 #include <string.h>
 
 //Motor Pins
@@ -20,7 +19,7 @@ const int stringSize = 64;
 char stringarr[stringSize];
 
 //Used for the ledPin test
-const int ledPin = 10;
+const int ledPin = 2;
 char sval; 
 char bval;
 
@@ -146,16 +145,7 @@ void loop()
   digitalWrite (dirB, lrBool);
   analogWrite (speedB, (int)(dirVal*speedFactor));
   
-  
-  
-  //This was used to turn on an LED via bluetooth and I like it here!
-  bval = stringarr[availBytes -1];
-  if( bval == 'h' ) {
-    digitalWrite(ledPin, HIGH);  // turn ON the LED
-  } else if ( bval == 'o') { 
-    digitalWrite(ledPin, LOW);   // otherwise turn it OFF
-  }
-  
+  digitalWrite(ledPin, headBool);   
   
   //Everything works better if you give it a break between loops
   delay(loopDelay);   
