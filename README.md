@@ -1,4 +1,5 @@
-androdino
+Androdino
 =========
 
-The Android/Arduino project! All kinds of experiments.
+Arduino sketches and an Android app to control lego motors. More commiing soon!
+
