@@ -36,13 +36,13 @@
 			<div class="slides">
 
 				<section>
-					<h1>ADK and Arduino</h1>
-					<h3>Using the ADK (Accessory Development Kit) and Arduino to do awesome things</h3>
+					<h2>Arduino, Android and Lego</h2>
+					<h3>Using Arduino (and an Android app) to control Lego motors</h3>
 					<p>aka: <a href="https://github.com/tooshel/androdino">androdino</a></p>
 
 
 					<aside class="notes">
-						<p>Hello? Did everyone get a beer?</p>
+						<p>Hello? Aparently I say "um" alot . . . that sucks for you?</p>
 						<p>Ready for show and tell?</p>
 					</aside>
 				</section>
@@ -53,9 +53,9 @@
 						<h3>Cause I had to</h3>
 
 						<ul>
-						<li>Web Developer since Miss December 1994 
+						<li>Web Developer since before there was Google
 						<li>Barely got an Electrical Engineering degree
-						<li>Google I/O is sorta my thing
+						<li>Google I/O is sorta my thing (love conferences!)
 						</ul>
 
 						<aside class="notes">
@@ -65,6 +65,60 @@
 					<section>
 						<img src="images/baby.jpg">
 					</section>
+
+				</section>
+
+				<section>
+					<h1>The project!</h1>
+					<p>Add motors, gears, etc, to a this Lego set and connect it to an Arudino card outfitted with bluetooth and control it with an app on an Android Phone.</p>
+					<img src="images/8041-600px.jpg">
+				</section>
+
+
+				<section>
+					<h1>Why Lego?</h1>
+						<ul>
+							<li>Lego Technic makes it easy to prototype ideas</li>
+							<li>Lego Motors are already geared down and powerful</li>
+							<li>Lego Gears all work with each other</li>
+							<li>Wanted to use this cool steering idea from Sariel</li>
+							<li>Lego is fun! Age isn't a factor!</li>
+							<li>A reason to buy more Lego</li>
+						</ul>
+
+
+					<aside class="notes">
+						<p>Look at all these Lego sets I bought! Mostly just for this project!</p>
+						<p></p>
+						<p></p>
+					</aside>
+				</section>
+
+
+				<section>
+					<h1>Why Arduino?</h1>
+						<ul>
+							<li>Wanted a reason to explore microcontrollers</li>
+							<li>Committed to give a presentation about Arduino and Android</li>
+							<li>Arduino is inexpensive compared to a Mindstorms set</li>
+							<li>Mindstorms "brain" is very limited (wireless and programming options)</li>
+						</ul>
+
+					<aside class="notes">
+						<p>Look at all these Lego sets I bought! Mostly just for this project!</p>
+						<p></p>
+						<p></p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Why Android?</h1>
+						<ul>
+							<li>Lego remotes don't give control over speed (mostly . . . just ignore that train remote)</li>
+							<li>Lego remotes are IR (light based) so you have to point the remote at the car</li>
+							<li>Lego remotes perform poorly outside (the Sun's IR interfers)
+							<li>Did I mention that commitment about giving a talk about Google stuff?</li>
+						</ul>
 
 				</section>
 
@@ -85,6 +139,8 @@
 
 				</section>
 
+				<!--
+
 				<section id="adk">
 					<section>
 					<h1>What is ADK?</h1>
@@ -102,6 +158,9 @@
 
 				</section>
 
+				-->
+
+				<!--
 				<section id="awesome" data-state="lego">
 					<section>
 						<h1>What is awesome?</h1>
@@ -134,6 +193,16 @@
 						</aside>
 					</section>
 
+				</section>
+				-->
+
+				<section id="demo">
+					<h1>Demo "punch it"</h1>
+					<img src="images/8041-600px.jpg">
+
+					<aside class="notes">
+						<p>Best just to see it for yourself</p>
+					</aside>
 				</section>
 
 				<section id="more-on-arduino">
@@ -210,23 +279,24 @@
 					</section>
 				</section>
 
-				<section id="demo">
-					<h1>Demo "punch it"</h1>
-					<img src="images/8041-600px.jpg">
-
-					<aside class="notes">
-						<p>Best just to see it for yourself</p>
-					</aside>
-				</section>
 
 				<section id="details-hardware">
-					<h1>Hardware details</h1>
+					<h1>Arduino Hardware details</h1>
 					<ul>
-						<li>Arduino Uno</li>
-						<li>itead "Motomama" Shield with BTBee module</li>
+						<li>Arduino Mega (or Uno)</li>
+						<li>iTead "Motomama" Shield with BTBee module</li>
 					</ul>
 					<br>
 					<br>
+			 
+					<aside class="notes">
+						<p>Shields can be replace with smaller parts and even custom boards</p>
+					</aside>
+
+				</section>
+
+				<section id="details-hardware">
+					<h1>Lego details</h1>
 
 					<h2>Notice</h2>
 					<ul>
@@ -241,6 +311,7 @@
 
 				</section>
 
+
 				<section id="details-software-arduino">
 					<section>
 						<h2 class="upper">Hardware Software Details</h2>
@@ -250,6 +321,174 @@
 
 					<section id="details-software-arduino">
 						<h2 class="upper">Hardware Software Details</h2>
+
+					<pre><code contenteditable>#include string.h
+
+#define right1 5		//define I1 interface
+#define speedPinRight 6  	//enable right motor (bridge A)
+#define right2 7      		//define I2 interface 
+
+#define left1 8      		//define I3 interface 
+#define speedPinLeft 9  	//enable motor B
+#define left2 10     		//define I4 interface 
+
+//Motor Pins
+int dir1B = right1;
+int speedB = speedPinRight;
+int dir2B = right2;
+
+int dir1A = left1;
+int speedA = speedPinLeft; 
+int dir2A = left2;
+
+
+//Bluetooth Pins
+const int rxPin = 0; // pin used to receive, though, on the itead card, PIN 0 is TX
+const int txPin = 1; // pin used to send to, though, on the itead card, PIN 1 is RX
+
+//Other Bluetooth related globals
+int availBytes;
+const int stringSize = 64;
+char stringarr[stringSize];
+
+//Used for the ledPin test
+const int ledPin = 2;
+char sval; 
+char bval;
+
+//Other Globals . . . love GLOBALS
+int loopDelay = 50;
+
+const float speedFactor = 28.3;
+String CTRLStr = '\0';
+int frBool = 0;
+int speedVal = 0;
+int lrBool = 0;
+int dirVal = 0;
+int headBool = 0;
+int brakeLeftBool = 0;
+int brakeRightBool = 0;
+
+//This is a valid string
+//API: s:foward/reverse:speed:left/right:direction:headlights:brakeleft:brakeright
+//ex   s:1:5:1:5:0:0:0
+
+int apiStringSize = 15;
+char apiStartChar = 's';
+
+//needed for splitString
+const int MAX_ARGS = 9;
+char byteRead;
+
+void setup()
+{
+  //Serial is used for bluetooth
+  Serial.begin(9600);
+
+  //Testing Pin
+  pinMode(ledPin, OUTPUT);
+  
+  //Motor Pins  
+  pinMode (dir1A, OUTPUT);
+  pinMode (dir2A, OUTPUT);
+  pinMode (dir1B, OUTPUT);
+  pinMode (dir2B, OUTPUT);
+  pinMode (speedA, OUTPUT);
+  pinMode (speedB, OUTPUT);
+  
+}
+
+void loop()
+{
+  //Blank out the string array that will hold the data from Bluetooth
+  for(int i=0; i<stringSize; i++)
+  {
+    stringarr[i] = '\0';
+  }
+  
+  availBytes = Serial.available();
+  //Only read in the string when it has all the commands in the queue
+  if(availBytes >= apiStringSize) { 
+    //Every Serial.print/println/write is just a debug message sent to Bluetooth device
+    Serial.print("Bluetooth Serial Available: ");
+    Serial.println(availBytes);
+    
+    //Read in everything . . . we only need the first apiStringSize but we want to 
+    //clear the buffer of everything else, one char at a time
+    for(int i=0; i<availBytes; i++)
+    {
+      stringarr[i] = Serial.read();
+    }
+    
+    Serial.println(stringarr);
+    
+    //splitString is defined below . . . I borrowed it from SO
+    CTRLStr=splitString(stringarr,':',0);
+        
+    //Check to see if the control string is set to s . . . IT WORKS   
+    if(CTRLStr[0] == 's') {
+      //Grab all the vars we need that came in from bluetooth that ".toInt()" trick isn't mentioned 
+      //in the String docs (there when 3 hours) . . . not use to all this type safety
+      frBool = splitString(stringarr,':',1).toInt();
+      speedVal = splitString(stringarr,':',2).toInt();
+      lrBool = splitString(stringarr,':',3).toInt();
+      dirVal = splitString(stringarr,':',4).toInt();
+      headBool = splitString(stringarr,':',5).toInt();
+      brakeLeftBool = splitString(stringarr,':',6).toInt();
+      brakeRightBool = splitString(stringarr,':',7).toInt();
+    }
+    CTRLStr = '\0';
+  }
+  
+  //Chances are nothing changes but I'll set the speed/direction of all the motors every loop
+  if (frBool == 1) {
+    digitalWrite (dir1A, 1);
+    digitalWrite (dir2A, 0);
+  } else {
+    digitalWrite (dir1A, 0);
+    digitalWrite (dir2A, 1);
+  }
+  
+  if (lrBool == 1) {
+    digitalWrite (dir1B, 1);
+    digitalWrite (dir2B, 0);
+  } else {
+    digitalWrite (dir1B, 0);
+    digitalWrite (dir2B, 1);
+  }
+  
+  analogWrite (speedA, (int)(speedVal*speedFactor));
+  analogWrite (speedB, (int)(dirVal*speedFactor));
+  digitalWrite(ledPin, headBool);   
+  
+  //Everything works better if you give it a break between loops
+  delay(loopDelay);   
+}
+
+String splitString(String s, char parser,int index) {
+  String rs='\0';
+  int parserCnt=0;
+  int rFromIndex=0, rToIndex=-1;
+
+  while(index>=parserCnt){
+    rFromIndex = rToIndex+1;
+    rToIndex = s.indexOf(parser,rFromIndex);
+
+    if(index == parserCnt){
+      if(rToIndex == 0 || rToIndex == -1){
+        return '\0';
+      }
+      return s.substring(rFromIndex,rToIndex);
+    }
+    else{
+      parserCnt++;
+    }
+
+  }
+  return rs;
+}
+</code></pre>
+<p>A little more than 100 lines of code and should be less</p>
 					</section>
 				</section>
 
@@ -296,18 +535,36 @@
 						<li>Software Serial on Mega/ADK</li>
 						<li>SoftwareSerial library (or any other normal library) not in ADK 2012 custom IDE</li>
 						<li>Lego batter pack is 9V. L298d chip on motor shield is inefficient</li>
-
 					</ul>
 
 					<aside class="notes">
 						<p>For ADK 1, since it's basically a <a href="http://arduino.cc/en/Reference/SoftwareSerial">Mega</a>, you can't software serial on the usual pins. </p>
 						<p>Since I'm using the UART pins 0 and 1 for bluetooth, I have to disconnect the bluetooth whenever I want to program the arduino</p>
-						<p> (might be able to get it from the other Cortex M3 Arduino Clones)</p>
+						<p>(might be able to get it from the other Cortex M3 Arduino Clones)</p>
 						<p>The battery from Lego is 9V but because of the L298 there is a 3V drop by the time it gets to the motors. So I had to invent a solution.</p>
 					</aside>
 
 				</section>
+				<section id="demo-shieldbot">
+					<h1>Demo Shieldbot</h1>
+					<h2>Hardware</h2>
+					<ul>
+						<li>Arduino Uno</li>
+						<li>Shieldbot (motor shield with motors attached!)</li>
+						<li>Bluetooth Shield</li>
+					</ul>
 
+					<h2>Software</h2>
+					<ul>
+						<li>Tank Mode button</li>
+					</ul>
+
+
+					<aside class="notes">
+						<p></p>
+					</aside>
+				</section>
+				<!--
 				<section id="demo-crawler">
 					<h1>Demo</h1>
 					<p>Crawler (which means slow, aparently)</p>
@@ -322,6 +579,7 @@
 						<p>In the world of Lego there are competitions to get a "crawler" to make it through an obstacle course</p>
 					</aside>
 				</section>
+				-->
 
 				<section id="future">
 					<h1>What's next?</h1>
@@ -352,12 +610,12 @@
 				</section>
 
 				<section id="where-is-js">
-					<h1>Where the &lt;BLEEP&gt;<br>is the Javascript?</h1>
+					<h1>Why not Javascript?</h1>
 					<h2>i.e. Why didn't you use?</h2>
 
 					<aside class="notes">
 						<p>I didn't want a computer between the phone and Arduino</p>
-						<p>ADK 2102 and Due are powerful enough to use for something other than serial controlers</p>						
+						<p>ADK 2012 and Due are powerful enough to use for something other than serial controlers</p>						
 					</aside>
 
 				</section>
@@ -388,6 +646,7 @@
 						<a href="http://www.sparkfun.com/">Sparkfun</a><br>
 						<a href="http://www.adafruit.com/">Adafruit</a><br>
 						<a href="http://blog.iteadstudio.com/">itead</a><br>
+						<a href="http://www.seeedstudio.com/depot/">seeed</a><br>
 						<a href="http://shop.lego.com/en-US/TECHNIC-ByTheme">Lego Technic</a> and <a href="http://shop.lego.com/en-US/Power-Functions-ByCategory">Power Functions</a><br>
 
 						<aside class="notes">
@@ -411,7 +670,6 @@
 						</aside>
 					</section>
 				</section>
-
 
 
 				<section>
