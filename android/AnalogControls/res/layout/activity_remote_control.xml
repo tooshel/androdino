@@ -11,6 +11,17 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
+
+        <ToggleButton
+            android:id="@+id/tankControlButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="toggleClicked"
+            android:textOff="@string/toggle_tankmode"
+            android:textOn="@string/toggle_tankmode"
+            android:textSize="10sp" />
+
 			<ToggleButton
 		        android:id="@+id/toggleThumbstick1"
 		        android:layout_width="0dp"

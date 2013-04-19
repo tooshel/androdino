@@ -30,12 +30,15 @@ public class RemoteControlActivity extends Activity implements ValueListener{
 	ToggleButton lightsToggle;
 	ToggleButton miscToggle1;
 	ToggleButton miscToggle2;
+	ToggleButton tankModeToggle;
 	
 
 	private BluetoothAdapter mBluetoothAdapter;
 	private ComService mComService;
     // Name of the connected device
     private String mConnectedDeviceName = null;
+    
+    private boolean isTankMode = false;
 
 	TextView debugText;
 	
@@ -110,6 +113,7 @@ public class RemoteControlActivity extends Activity implements ValueListener{
         miscToggle1 = (ToggleButton)findViewById(R.id.toggleButton2);
         miscToggle2 = (ToggleButton)findViewById(R.id.toggleButton3);
         debugText = (TextView)findViewById(R.id.debug_console);
+        tankModeToggle = (ToggleButton) findViewById(R.id.tankControlButton);
         
         speedControl.setValueListener(this);
         steeringControl.setValueListener(this);
@@ -171,6 +175,8 @@ public class RemoteControlActivity extends Activity implements ValueListener{
     	speedControl.setInvertY(invertSpeedToggle.isChecked());
     	steeringControl.setInvertX(invertSteeringToggle.isChecked());
     	steeringControl.setDigital(miscToggle2.isChecked());
+    	
+    	isTankMode = tankModeToggle.isChecked();
     }
         
 
@@ -182,7 +188,11 @@ public class RemoteControlActivity extends Activity implements ValueListener{
 	private void updatePacket() {
 		
 		packet.speed = speedControl.getValue().y;
-		packet.steer = steeringControl.getValue().x;
+		if(isTankMode) {
+			packet.steer = steeringControl.getValue().y;
+		} else {
+			packet.steer = steeringControl.getValue().x;
+		}
 		packet.lights = lightsToggle.isChecked();
 		packet.misc1 = miscToggle1.isChecked();
 		packet.misc2 = miscToggle2.isChecked();

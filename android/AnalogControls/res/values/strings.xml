@@ -12,6 +12,7 @@
     <string name="toggle_lights">lights</string>
     <string name="toggle_misc1">misc1</string>
     <string name="toggle_misc2">digital</string>
+    <string name="toggle_tankmode">tank</string>
     <string name="debug_text">debug text goes here</string>
 
     <string name="title_activity_bluetooth_test">BluetoothTestActivity</string>
